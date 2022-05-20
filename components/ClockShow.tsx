@@ -19,7 +19,7 @@ const ClockContainer = styled.div<Partial<ClockContainerProps>>`
     isDark,
     darkBorderColor,
     borderColor
-  }) => isDark ? darkBorderColor ?? 'gray' : borderColor ?? 'lightGray'};
+  }) => isDark ? darkBorderColor ?? '#eeeeee47' : borderColor ?? 'rgba(0,0,0,.2)'};
 `
 
 interface ClockLineProps{
@@ -36,7 +36,7 @@ const ClockLine = styled.div<Partial<ClockLineProps>>`
   z-index: 7;
   width: ${({ width }) => width || 2}px;
   height: ${({ height }) => height || 23}px;
-  background: ${({ isDark, darkColor, color, }) => isDark ? darkColor ?? 'yellow' : color ?? 'dodgerBlue'};
+  background: ${({ isDark, darkColor, color, }) => isDark ? darkColor ?? 'white' : color ?? 'black'};
   left: 50%;
   top: -1px;
   margin-left: -1px;

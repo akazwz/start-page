@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Box, Button, Center, useColorMode } from '@chakra-ui/react'
+import { Box, Button, Center, IconButton, useColorMode } from '@chakra-ui/react'
 import Head from 'next/head'
 
 import { LettersClock, NumberClock, SymbolClock } from '../components/ClockShow'
 
 import type { NextPage } from 'next'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 type ClockType = [string, string]
 
@@ -18,6 +19,8 @@ const Home: NextPage = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
 
 	const [clock, setClock] = useState<IClock>()
+
+	const toggleColorModeIcon = colorMode === 'dark' ? <SunIcon /> : <MoonIcon />
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -50,6 +53,10 @@ const Home: NextPage = () => {
 				<title>Start Page</title>
 			</Head>
 			<Box>
+				<Center m={7}>
+					<IconButton onClick={toggleColorMode} aria-label={'toggle color mode'} icon={toggleColorModeIcon} />
+					{}
+				</Center>
 				<Center>
 					<NumberClock value={0} isDark={colorMode === 'dark'} />
 					<NumberClock value={1} isDark={colorMode === 'dark'} />
@@ -76,11 +83,7 @@ const Home: NextPage = () => {
 				<Center>
 					<LettersClock value={'A'} isDark={colorMode === 'dark'} />
 				</Center>
-				<Center>
-					<Button onClick={toggleColorMode}>
-						Toggle Color Mode
-					</Button>
-				</Center>
+
 			</Box>
 		</>
 	)
