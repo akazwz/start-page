@@ -7,7 +7,7 @@ const theme: Record<string, any> = extendTheme({
 	...foundations,
 	components: { ...components },
 	config: {
-		initialColorMode: 'light',
+		initialColorMode: 'system',
 		useSystemColorMode: false,
 	},
 })
