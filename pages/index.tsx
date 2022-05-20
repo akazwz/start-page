@@ -15,7 +15,7 @@ interface IClock{
 }
 
 const Home: NextPage = () => {
-	const { toggleColorMode } = useColorMode()
+	const { colorMode, toggleColorMode } = useColorMode()
 
 	const [clock, setClock] = useState<IClock>()
 
@@ -51,30 +51,30 @@ const Home: NextPage = () => {
 			</Head>
 			<Box>
 				<Center>
-					<NumberClock value={0} />
-					<NumberClock value={1} />
+					<NumberClock value={0} isDark={colorMode === 'dark'} />
+					<NumberClock value={1} isDark={colorMode === 'dark'} />
 				</Center>
 				<Center>
-					<NumberClock value={2} />
-					<NumberClock value={3} />
+					<NumberClock value={2} isDark={colorMode === 'dark'} />
+					<NumberClock value={3} isDark={colorMode === 'dark'} />
 				</Center>
 				<Center>
-					<NumberClock value={4} />
-					<NumberClock value={5} />
+					<NumberClock value={4} isDark={colorMode === 'dark'} />
+					<NumberClock value={5} isDark={colorMode === 'dark'} />
 				</Center>
 				<Center>
-					<NumberClock value={6} />
-					<NumberClock value={7} />
+					<NumberClock value={6} isDark={colorMode === 'dark'} />
+					<NumberClock value={7} isDark={colorMode === 'dark'} />
 				</Center>
 				<Center>
-					<NumberClock value={8} />
-					<NumberClock value={9} />
+					<NumberClock value={8} isDark={colorMode === 'dark'} />
+					<NumberClock value={9} isDark={colorMode === 'dark'} />
 				</Center>
 				<Center>
-					<SymbolClock value={','} />
+					<SymbolClock value={','} isDark={colorMode === 'dark'} />
 				</Center>
 				<Center>
-					<LettersClock value={'A'} />
+					<LettersClock value={'A'} isDark={colorMode === 'dark'} />
 				</Center>
 				<Center>
 					<Button onClick={toggleColorMode}>
