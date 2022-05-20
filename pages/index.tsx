@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Box, Center } from '@chakra-ui/react'
+import { Box, Button, Center, useColorMode } from '@chakra-ui/react'
 import Head from 'next/head'
 
-import { Block, Separator } from '../components'
-import SwitchNumber from '../src/constants/numbers'
+import { LettersClock, NumberClock, SymbolClock } from '../components/ClockShow'
 
 import type { NextPage } from 'next'
 
@@ -16,6 +15,8 @@ interface IClock{
 }
 
 const Home: NextPage = () => {
+	const { toggleColorMode } = useColorMode()
+
 	const [clock, setClock] = useState<IClock>()
 
 	useEffect(() => {
@@ -49,15 +50,36 @@ const Home: NextPage = () => {
 				<title>Start Page</title>
 			</Head>
 			<Box>
-				<Center minH="70vh">
-					<Block number={SwitchNumber(clock?.hour[0] || '0')} />
-					<Block number={SwitchNumber(clock?.hour[1] || '0')} />
-					<Separator />
-					<Block number={SwitchNumber(clock?.minute[0] || '0')} />
-					<Block number={SwitchNumber(clock?.minute[1] || '0')} />
-					<Separator />
-					<Block number={SwitchNumber(clock?.second[0] || '0')} />
-					<Block number={SwitchNumber(clock?.second[1] || '0')} />
+				<Center>
+					<NumberClock value={0} />
+					<NumberClock value={1} />
+				</Center>
+				<Center>
+					<NumberClock value={2} />
+					<NumberClock value={3} />
+				</Center>
+				<Center>
+					<NumberClock value={4} />
+					<NumberClock value={5} />
+				</Center>
+				<Center>
+					<NumberClock value={6} />
+					<NumberClock value={7} />
+				</Center>
+				<Center>
+					<NumberClock value={8} />
+					<NumberClock value={9} />
+				</Center>
+				<Center>
+					<SymbolClock value={','} />
+				</Center>
+				<Center>
+					<LettersClock value={'A'} />
+				</Center>
+				<Center>
+					<Button onClick={toggleColorMode}>
+						Toggle Color Mode
+					</Button>
 				</Center>
 			</Box>
 		</>

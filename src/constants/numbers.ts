@@ -1,4 +1,4 @@
-import { BlockType, ClockRotate } from './types'
+import { BlockType } from './types'
 import {
 	IDLE,
 	RIGHT_BOTTOM,
@@ -8,349 +8,344 @@ import {
 	RIGHT_RIGHT,
 	RIGHT_LEFT,
 	BOTTOM_LEFT,
+	LEFT_LEFT,
 } from './directions'
 
-export const separator: BlockType = [
-	// first
-	IDLE,
-	IDLE,
-	// second
-	BOTTOM_LEFT,
-	RIGHT_BOTTOM,
-	// third
-	TOP_LEFT,
-	TOP_RIGHT,
-	// fourth
-	BOTTOM_LEFT,
-	RIGHT_BOTTOM,
-	// fifth
-	TOP_LEFT,
-	TOP_RIGHT,
-	// sixth
-	IDLE,
-	IDLE,
-]
 export const numberZero: BlockType = [
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	TOP_BOTTOM,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
 	BOTTOM_LEFT,
+
+	TOP_BOTTOM,
 	RIGHT_BOTTOM,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
 	TOP_BOTTOM,
 	TOP_BOTTOM,
 	TOP_BOTTOM,
 	TOP_BOTTOM,
+
 	TOP_BOTTOM,
 	TOP_BOTTOM,
 	TOP_BOTTOM,
 	TOP_BOTTOM,
+
 	TOP_BOTTOM,
-	TOP_BOTTOM,
-	TOP_LEFT,
 	TOP_RIGHT,
-	TOP_BOTTOM,
 	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_RIGHT,
 	RIGHT_LEFT,
 	RIGHT_LEFT,
-	TOP_RIGHT,
+	TOP_LEFT,
 ]
 export const numberOne: BlockType = [
-	IDLE,
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	IDLE,
-	TOP_BOTTOM,
+	RIGHT_LEFT,
 	BOTTOM_LEFT,
+	IDLE,
+
 	TOP_RIGHT,
-	IDLE,
-	TOP_BOTTOM,
-	TOP_BOTTOM,
-	IDLE,
-	IDLE,
-	TOP_BOTTOM,
-	TOP_BOTTOM,
-	IDLE,
 	BOTTOM_LEFT,
-	TOP_RIGHT,
-	TOP_LEFT,
+	TOP_BOTTOM,
+	IDLE,
+
+	IDLE,
+	TOP_BOTTOM,
+	TOP_BOTTOM,
+	IDLE,
+
+	IDLE,
+	TOP_BOTTOM,
+	TOP_BOTTOM,
+	IDLE,
+
 	RIGHT_BOTTOM,
 	TOP_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	TOP_RIGHT,
+	BOTTOM_LEFT,
+
+	TOP_RIGHT,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
+	TOP_LEFT,
 ]
 export const numberTwo: BlockType = [
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	TOP_BOTTOM,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
 	BOTTOM_LEFT,
-	RIGHT_LEFT,
+
 	TOP_RIGHT,
-	TOP_BOTTOM,
-	TOP_LEFT,
 	RIGHT_LEFT,
-	RIGHT_BOTTOM,
-	TOP_LEFT,
-	RIGHT_LEFT,
-	RIGHT_BOTTOM,
-	TOP_BOTTOM,
 	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	TOP_RIGHT,
 	TOP_BOTTOM,
+
+	RIGHT_BOTTOM,
+	RIGHT_LEFT,
 	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_BOTTOM,
+	RIGHT_BOTTOM,
 	RIGHT_LEFT,
-	RIGHT_LEFT,
+	TOP_LEFT,
+
+	TOP_BOTTOM,
 	TOP_RIGHT,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+
+	TOP_RIGHT,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
+	TOP_LEFT,
 ]
 export const numberThree: BlockType = [
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	TOP_BOTTOM,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
 	BOTTOM_LEFT,
-	RIGHT_LEFT,
+
 	TOP_RIGHT,
-	TOP_BOTTOM,
-	TOP_LEFT,
 	RIGHT_LEFT,
-	RIGHT_BOTTOM,
-	TOP_BOTTOM,
 	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	TOP_RIGHT,
 	TOP_BOTTOM,
-	TOP_LEFT,
-	RIGHT_LEFT,
+
 	RIGHT_BOTTOM,
+	RIGHT_LEFT,
 	TOP_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
+	TOP_BOTTOM,
+
 	TOP_RIGHT,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	RIGHT_BOTTOM,
+	RIGHT_LEFT,
+	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_RIGHT,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
+	TOP_LEFT,
 ]
 export const numberFour: BlockType = [
-	// first
-	BOTTOM_LEFT,
 	RIGHT_BOTTOM,
 	BOTTOM_LEFT,
 	RIGHT_BOTTOM,
-	// second
+	BOTTOM_LEFT,
+
 	TOP_BOTTOM,
 	TOP_BOTTOM,
 	TOP_BOTTOM,
 	TOP_BOTTOM,
-	// third
+
 	TOP_BOTTOM,
-	TOP_LEFT,
 	TOP_RIGHT,
+	TOP_LEFT,
 	TOP_BOTTOM,
-	// fourth
-	TOP_BOTTOM,
-	BOTTOM_LEFT,
+
+	TOP_RIGHT,
 	RIGHT_LEFT,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	IDLE,
+	IDLE,
+	TOP_BOTTOM,
+	TOP_BOTTOM,
+
+	IDLE,
+	IDLE,
 	TOP_RIGHT,
-	// fifth
-	TOP_BOTTOM,
-	TOP_BOTTOM,
-	IDLE,
-	IDLE,
-	// sixth
 	TOP_LEFT,
-	TOP_RIGHT,
-	IDLE,
-	IDLE,
 ]
 export const numberFive: BlockType = [
-	// first
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	// second
-	TOP_LEFT,
 	RIGHT_LEFT,
-	RIGHT_BOTTOM,
-	TOP_BOTTOM,
-	// third
+	RIGHT_LEFT,
 	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	TOP_RIGHT,
+
 	TOP_BOTTOM,
-	// fourth
-	TOP_BOTTOM,
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	TOP_RIGHT,
-	// fifth
-	TOP_BOTTOM,
-	TOP_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	// sixth
+	RIGHT_LEFT,
 	TOP_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
+
+	TOP_BOTTOM,
 	TOP_RIGHT,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+
+	TOP_RIGHT,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	RIGHT_BOTTOM,
+	RIGHT_LEFT,
+	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_RIGHT,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
+	TOP_LEFT,
 ]
 export const numberSix: BlockType = [
-	// first
-	IDLE,
-	IDLE,
-	BOTTOM_LEFT,
 	RIGHT_BOTTOM,
-	// second
-	IDLE,
-	IDLE,
-	TOP_BOTTOM,
-	TOP_BOTTOM,
-	// third
-	BOTTOM_LEFT,
 	RIGHT_LEFT,
-	TOP_RIGHT,
-	TOP_BOTTOM,
-	// fourth
-	TOP_BOTTOM,
+	RIGHT_LEFT,
 	BOTTOM_LEFT,
+
+	TOP_BOTTOM,
 	RIGHT_BOTTOM,
-	TOP_BOTTOM,
-	// fifth
-	TOP_BOTTOM,
+	RIGHT_LEFT,
 	TOP_LEFT,
+
+	TOP_BOTTOM,
 	TOP_RIGHT,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+
 	TOP_BOTTOM,
-	// sixth
+	RIGHT_BOTTOM,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	TOP_BOTTOM,
+	TOP_RIGHT,
 	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_RIGHT,
 	RIGHT_LEFT,
 	RIGHT_LEFT,
-	TOP_RIGHT,
+	TOP_LEFT,
 ]
 export const numberSeven: BlockType = [
-	// first
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	// second
-	TOP_BOTTOM,
-	BOTTOM_LEFT,
 	RIGHT_LEFT,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+
 	TOP_RIGHT,
-	// third
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
 	TOP_BOTTOM,
-	TOP_BOTTOM,
+
 	IDLE,
 	IDLE,
-	// fourth
 	TOP_BOTTOM,
 	TOP_BOTTOM,
+
 	IDLE,
 	IDLE,
-	// fifth
 	TOP_BOTTOM,
 	TOP_BOTTOM,
+
 	IDLE,
 	IDLE,
-	// sixth
+	TOP_BOTTOM,
+	TOP_BOTTOM,
+
+	IDLE,
+	IDLE,
+	TOP_RIGHT,
 	TOP_LEFT,
-	TOP_RIGHT,
-	IDLE,
-	IDLE,
 ]
 export const numberEight: BlockType = [
-	// first
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	// second
-	TOP_BOTTOM,
-	BOTTOM_LEFT,
-	RIGHT_BOTTOM,
-	TOP_BOTTOM,
-	// third
-	TOP_BOTTOM,
-	TOP_LEFT,
-	TOP_RIGHT,
-	TOP_BOTTOM,
-	// fourth
-	TOP_BOTTOM,
-	BOTTOM_LEFT,
-	RIGHT_BOTTOM,
-	TOP_BOTTOM,
-	// fifth
-	TOP_BOTTOM,
-	TOP_LEFT,
-	TOP_RIGHT,
-	TOP_BOTTOM,
-	// sixth
-	TOP_LEFT,
 	RIGHT_LEFT,
 	RIGHT_LEFT,
+	BOTTOM_LEFT,
+
+	TOP_BOTTOM,
+	RIGHT_BOTTOM,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	TOP_BOTTOM,
 	TOP_RIGHT,
+	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_BOTTOM,
+	RIGHT_BOTTOM,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	TOP_BOTTOM,
+	TOP_RIGHT,
+	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_RIGHT,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
+	TOP_LEFT,
 ]
 export const numberNine: BlockType = [
-	// first
-	BOTTOM_LEFT,
-	RIGHT_LEFT,
-	RIGHT_LEFT,
 	RIGHT_BOTTOM,
-	// second
-	TOP_BOTTOM,
-	BOTTOM_LEFT,
-	RIGHT_BOTTOM,
-	TOP_BOTTOM,
-	// third
-	TOP_BOTTOM,
-	TOP_LEFT,
-	TOP_RIGHT,
-	TOP_BOTTOM,
-	// fourth
-	TOP_BOTTOM,
-	BOTTOM_LEFT,
 	RIGHT_LEFT,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+
+	TOP_BOTTOM,
+	RIGHT_BOTTOM,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	TOP_BOTTOM,
 	TOP_RIGHT,
-	// fifth
-	TOP_BOTTOM,
-	TOP_BOTTOM,
-	IDLE,
-	IDLE,
-	// sixth
 	TOP_LEFT,
+	TOP_BOTTOM,
+
 	TOP_RIGHT,
-	IDLE,
-	IDLE,
+	RIGHT_LEFT,
+	BOTTOM_LEFT,
+	TOP_BOTTOM,
+
+	RIGHT_BOTTOM,
+	RIGHT_LEFT,
+	TOP_LEFT,
+	TOP_BOTTOM,
+
+	TOP_RIGHT,
+	RIGHT_LEFT,
+	RIGHT_LEFT,
+	TOP_LEFT,
 ]
 
-const SwitchNumber = (number: string) => {
-	switch (number) {
-		case '0':
+const SwitchNumber = (value?: number) => {
+	switch (value) {
+		case 0:
 			return numberZero
-		case '1':
+		case 1:
 			return numberOne
-		case '2':
+		case 2:
 			return numberTwo
-		case '3':
+		case 3:
 			return numberThree
-		case '4':
+		case 4:
 			return numberFour
-		case '5':
+		case 5:
 			return numberFive
-		case '6':
+		case 6:
 			return numberSix
-		case '7':
+		case 7:
 			return numberSeven
-		case '8':
+		case 8:
 			return numberEight
-		case '9':
+		case 9:
 			return numberNine
 		default:
-			return separator
+			return numberZero
 	}
 }
 
