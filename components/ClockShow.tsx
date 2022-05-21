@@ -94,7 +94,12 @@ export const NumberClock = ({
 	)
 }
 
-export const NumbersClock = (props: NumberClockProps) => {
+
+interface NumbersClockProps extends Partial<BaseClockProps>{
+	value: string
+}
+
+export const NumbersClock = (props: NumbersClockProps) => {
 	const data = props.value.toString().split('')
 	return (
 		<>
@@ -157,5 +162,21 @@ export const LetterClock = ({
 				</ClockContainer>
 			))}
 		</BlockContainer>
+	)
+}
+
+export const LettersClock = (props: LettersClockProps) => {
+	const data = props.value.split('')
+	return (
+		<>
+			{data.map((value: string, index: number) => (
+				<div key={'numbers-clock-' + index}>
+					<LetterClock
+						{...props}
+						value={value}
+					/>
+				</div>
+			))}
+		</>
 	)
 }
