@@ -29,6 +29,7 @@ interface ClockLineProps{
 	height: number
 	isDark: boolean
 	isResponsive: boolean
+	xlHeight: number
 	lgHeight: number
 	mdHeight: number
 	smHeight: number
@@ -46,24 +47,24 @@ const ClockLine = styled.div<Partial<ClockLineProps>>`
   transform-origin: bottom;
   transform: rotate(${({ rotate }) => rotate}deg);
   transition: all 1s;
-	@media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 1280 : 0}px) {
     & {
-     height: ${({lgHeight})=>lgHeight || 18}px;
+      height: ${({ xlHeight }) => xlHeight || 14}px;
     }
   }
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 960 : 0}px) {
     & {
-      height: ${({lgHeight})=>lgHeight || 12}px;
+      height: ${({ lgHeight }) => lgHeight || 12}px;
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 768 : 0}px) {
     & {
-      height: ${({lgHeight})=>lgHeight || 6}px;
+      height: ${({ mdHeight }) => mdHeight || 6}px;
     }
   }
-  @media only screen and (max-width: 320px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 500 : 0}px) {
     & {
-      height: ${({lgHeight})=>lgHeight || 6}px;
+      height: ${({ smHeight }) => smHeight || 5}px;
     }
   }
 `
@@ -73,6 +74,7 @@ interface BlockContainerProps{
 	rows: number
 	size: number
 	isResponsive: boolean
+	xlSize: number
 	lgSize: number
 	mdSize: number
 	smSize: number
@@ -84,28 +86,28 @@ const BlockContainer = styled.div<Partial<BlockContainerProps>>`
   grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ size }) => size || 46}px);
   grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ size }) => size || 46}px);
   align-items: center;
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 1280 : 0}px) {
     & {
-      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ lgSize }) => lgSize || 36}px);
-      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ lgSize }) => lgSize || 36}px);
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ xlSize }) => xlSize || 28}px);
+      grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ lgSize }) => lgSize || 28}px);
     }
   }
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 960 : 0}px) {
     & {
-      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ mdSize }) => mdSize || 24}px);
-      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ mdSize }) => mdSize || 24}px);
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ lgSize }) => lgSize || 24}px);
+      grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ lgSize }) => lgSize || 24}px);
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 768 : 0}px) {
     & {
-      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ smSize }) => smSize || 12}px);
-      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ smSize }) => smSize || 12}px);
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ mdSize }) => mdSize || 12}px);
+      grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ mdSize }) => mdSize || 12}px);
     }
   }
-  @media only screen and (max-width: 320px) {
+  @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 500 : 0}px) {
     & {
-      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ smSize }) => smSize || 12}px);
-      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ smSize }) => smSize || 12}px);
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ smSize }) => smSize || 10}px);
+      grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ smSize }) => smSize || 10}px);
     }
   }
 `
@@ -118,7 +120,12 @@ interface BaseClockProps{
 	darkLineColor: string
 	columns: number
 	rows: number
+	isResponsive: boolean
 	isDark: boolean
+	xlSize: number
+	lgSize: number
+	mdSize: number
+	smSize: number
 }
 
 interface NumberClockProps extends Partial<BaseClockProps>{
@@ -126,11 +133,33 @@ interface NumberClockProps extends Partial<BaseClockProps>{
 }
 
 export const NumberClock = ({
-	value, size, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
+	value,
+	size,
+	columns,
+	rows,
+	isDark,
+	borderColor,
+	darkBorderColor,
+	lineColor,
+	darkLineColor,
+	isResponsive,
+	xlSize,
+	lgSize,
+	mdSize,
+	smSize,
 }: NumberClockProps) => {
 	const data = SwitchNumber(value)
 	return (
-		<BlockContainer columns={columns} rows={rows} size={size}>
+		<BlockContainer
+			columns={columns}
+			rows={rows}
+			size={size}
+			isResponsive={isResponsive || true}
+			xlSize={xlSize}
+			lgSize={lgSize}
+			mdSize={mdSize}
+			smSize={smSize}
+		>
 			{data.map((value, index,) => (
 				<ClockContainer
 					key={'clock-number-container-' + index}
@@ -144,6 +173,11 @@ export const NumberClock = ({
 						darkColor={darkLineColor}
 						rotate={value[0]}
 						isDark={isDark || false}
+						isResponsive={isResponsive || true}
+						xlHeight={xlSize! / 2}
+						lgHeight={lgSize! / 2}
+						mdHeight={mdSize! / 2}
+						smHeight={smSize! / 2}
 					/>
 					<ClockLine
 						height={size! / 2}
@@ -151,6 +185,11 @@ export const NumberClock = ({
 						darkColor={darkLineColor}
 						rotate={value[1]}
 						isDark={isDark || false}
+						isResponsive={isResponsive || true}
+						xlHeight={xlSize! / 2}
+						lgHeight={lgSize! / 2}
+						mdHeight={mdSize! / 2}
+						smHeight={smSize! / 2}
 					/>
 				</ClockContainer>
 			))}
@@ -183,11 +222,33 @@ interface SymbolClockProps extends Partial<BaseClockProps>{
 }
 
 export const SymbolClock = ({
-	value, size, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
+	value,
+	size,
+	columns,
+	rows,
+	isDark,
+	borderColor,
+	darkBorderColor,
+	lineColor,
+	darkLineColor,
+	isResponsive,
+	xlSize,
+	lgSize,
+	mdSize,
+	smSize,
 }: SymbolClockProps) => {
 	const data = SwitchSymbol(value)
 	return (
-		<BlockContainer columns={columns || 2} rows={rows} size={size}>
+		<BlockContainer
+			columns={columns || 2}
+			rows={rows}
+			size={size}
+			isResponsive={isResponsive || true}
+			xlSize={xlSize}
+			lgSize={lgSize}
+			mdSize={mdSize}
+			smSize={smSize}
+		>
 			{data.map((value, index,) => (
 				<ClockContainer
 					key={'clock-symbol-container-' + index}
@@ -201,6 +262,11 @@ export const SymbolClock = ({
 						darkColor={darkLineColor}
 						rotate={value[0]}
 						isDark={isDark || false}
+						isResponsive={isResponsive || true}
+						xlHeight={xlSize! / 2}
+						lgHeight={lgSize! / 2}
+						mdHeight={mdSize! / 2}
+						smHeight={smSize! / 2}
 					/>
 					<ClockLine
 						height={size! / 2}
@@ -208,6 +274,11 @@ export const SymbolClock = ({
 						darkColor={darkLineColor}
 						rotate={value[1]}
 						isDark={isDark || false}
+						isResponsive={isResponsive || true}
+						xlHeight={xlSize! / 2}
+						lgHeight={lgSize! / 2}
+						mdHeight={mdSize! / 2}
+						smHeight={smSize! / 2}
 					/>
 				</ClockContainer>
 			))}

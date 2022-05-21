@@ -41,7 +41,7 @@ const Home: NextPage = () => {
 		return () => clearInterval(interval)
 	}, [])
 
-	const baseSize = 13
+	const baseSize = 36
 
 	return (
 		<>
