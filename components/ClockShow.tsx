@@ -28,6 +28,10 @@ interface ClockLineProps{
 	width: number
 	height: number
 	isDark: boolean
+	isResponsive: boolean
+	lgHeight: number
+	mdHeight: number
+	smHeight: number
 }
 
 const ClockLine = styled.div<Partial<ClockLineProps>>`
@@ -42,12 +46,36 @@ const ClockLine = styled.div<Partial<ClockLineProps>>`
   transform-origin: bottom;
   transform: rotate(${({ rotate }) => rotate}deg);
   transition: all 1s;
+	@media only screen and (max-width: 1200px) {
+    & {
+     height: ${({lgHeight})=>lgHeight || 18}px;
+    }
+  }
+  @media only screen and (max-width: 960px) {
+    & {
+      height: ${({lgHeight})=>lgHeight || 12}px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    & {
+      height: ${({lgHeight})=>lgHeight || 6}px;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    & {
+      height: ${({lgHeight})=>lgHeight || 6}px;
+    }
+  }
 `
 
 interface BlockContainerProps{
 	columns: number
 	rows: number
 	size: number
+	isResponsive: boolean
+	lgSize: number
+	mdSize: number
+	smSize: number
 }
 
 const BlockContainer = styled.div<Partial<BlockContainerProps>>`
@@ -56,6 +84,30 @@ const BlockContainer = styled.div<Partial<BlockContainerProps>>`
   grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ size }) => size || 46}px);
   grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ size }) => size || 46}px);
   align-items: center;
+  @media only screen and (max-width: 1200px) {
+    & {
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ lgSize }) => lgSize || 36}px);
+      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ lgSize }) => lgSize || 36}px);
+    }
+  }
+  @media only screen and (max-width: 960px) {
+    & {
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ mdSize }) => mdSize || 24}px);
+      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ mdSize }) => mdSize || 24}px);
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    & {
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ smSize }) => smSize || 12}px);
+      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ smSize }) => smSize || 12}px);
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    & {
+      grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ smSize }) => smSize || 12}px);
+      grid-template-rows: repeat((${({ rows }) => rows || 6}, ${({ smSize }) => smSize || 12}px);
+    }
+  }
 `
 
 interface BaseClockProps{
