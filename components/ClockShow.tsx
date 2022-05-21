@@ -94,6 +94,22 @@ export const NumberClock = ({
 	)
 }
 
+export const NumbersClock = (props: NumberClockProps) => {
+	const data = props.value.toString().split('')
+	return (
+		<>
+			{data.map((value: string, index: number) => (
+				<div key={'numbers-clock-' + index}>
+					<NumberClock
+						{...props}
+						value={Number(value)}
+					/>
+				</div>
+			))}
+		</>
+	)
+}
+
 interface SymbolClockProps extends Partial<BaseClockProps>{
 	value: string
 }
@@ -123,7 +139,7 @@ interface LettersClockProps extends Partial<BaseClockProps>{
 	value: string
 }
 
-export const LettersClock = ({
+export const LetterClock = ({
 	value, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
 }: LettersClockProps) => {
 	const data = SwitchLetters(value)
