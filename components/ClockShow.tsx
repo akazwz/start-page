@@ -39,7 +39,7 @@ const ClockLine = styled.div<Partial<ClockLineProps>>`
   position: absolute;
   z-index: 7;
   width: ${({ width }) => width || 2}px;
-  height: ${({ height }) => height || 23}px;
+  height: ${({ height }) => height || 16}px;
   background: ${({ isDark, darkColor, color, }) => isDark ? darkColor ?? 'white' : color ?? 'black'};
   left: 50%;
   top: -1px;
@@ -83,8 +83,8 @@ interface BlockContainerProps{
 const BlockContainer = styled.div<Partial<BlockContainerProps>>`
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ size }) => size || 46}px);
-  grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ size }) => size || 46}px);
+  grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ size }) => size || 32}px);
+  grid-template-rows: repeat(${({ rows }) => rows || 6}, ${({ size }) => size || 32}px);
   align-items: center;
   @media only screen and (max-width: ${({ isResponsive }) => isResponsive ? 1280 : 0}px) {
     & {
