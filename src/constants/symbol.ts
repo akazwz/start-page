@@ -29,7 +29,7 @@ export const colon: BlockType = [
 
 const SwitchSymbol = (value?: string) => {
 	switch (value) {
-		case ',':
+		case ':':
 			return colon
 		default:
 			return colon

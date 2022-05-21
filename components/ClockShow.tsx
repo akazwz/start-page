@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 
 import SwitchNumber from '../src/constants/numbers'
 import SwitchSymbol from '../src/constants/symbol'
-import SwitchLetters from '../src/constants/letters'
 
 interface ClockContainerProps{
 	borderColor: string
@@ -45,13 +44,13 @@ const ClockLine = styled.div<Partial<ClockLineProps>>`
   transition: all 1s;
 `
 
-interface IBlockContainer{
+interface BlockContainerProps{
 	columns: number
 	rows: number
 	size: number
 }
 
-const BlockContainer = styled.div<Partial<IBlockContainer>>`
+const BlockContainer = styled.div<Partial<BlockContainerProps>>`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(${({ columns }) => columns || 4}, ${({ size }) => size || 46}px);
@@ -60,6 +59,7 @@ const BlockContainer = styled.div<Partial<IBlockContainer>>`
 `
 
 interface BaseClockProps{
+	size: number
 	borderColor: string
 	darkBorderColor: string
 	lineColor: string
@@ -74,11 +74,11 @@ interface NumberClockProps extends Partial<BaseClockProps>{
 }
 
 export const NumberClock = ({
-	value, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
+	value, size, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
 }: NumberClockProps) => {
 	const data = SwitchNumber(value)
 	return (
-		<BlockContainer columns={columns} rows={rows}>
+		<BlockContainer columns={columns} rows={rows} size={size}>
 			{data.map((value, index,) => (
 				<ClockContainer
 					key={'clock-number-container-' + index}
@@ -86,14 +86,25 @@ export const NumberClock = ({
 					darkBorderColor={darkBorderColor}
 					isDark={isDark || false}
 				>
-					<ClockLine color={lineColor} darkColor={darkLineColor} rotate={value[0]} isDark={isDark || false} />
-					<ClockLine color={lineColor} darkColor={darkLineColor} rotate={value[1]} isDark={isDark || false} />
+					<ClockLine
+						height={size! / 2}
+						color={lineColor}
+						darkColor={darkLineColor}
+						rotate={value[0]}
+						isDark={isDark || false}
+					/>
+					<ClockLine
+						height={size! / 2}
+						color={lineColor}
+						darkColor={darkLineColor}
+						rotate={value[1]}
+						isDark={isDark || false}
+					/>
 				</ClockContainer>
 			))}
 		</BlockContainer>
 	)
 }
-
 
 interface NumbersClockProps extends Partial<BaseClockProps>{
 	value: string
@@ -120,11 +131,11 @@ interface SymbolClockProps extends Partial<BaseClockProps>{
 }
 
 export const SymbolClock = ({
-	value, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
+	value, size, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
 }: SymbolClockProps) => {
 	const data = SwitchSymbol(value)
 	return (
-		<BlockContainer columns={columns || 2} rows={rows}>
+		<BlockContainer columns={columns || 2} rows={rows} size={size}>
 			{data.map((value, index,) => (
 				<ClockContainer
 					key={'clock-symbol-container-' + index}
@@ -132,51 +143,22 @@ export const SymbolClock = ({
 					darkBorderColor={darkBorderColor}
 					isDark={isDark || false}
 				>
-					<ClockLine color={lineColor} darkColor={darkLineColor} rotate={value[0]} isDark={isDark || false} />
-					<ClockLine color={lineColor} darkColor={darkLineColor} rotate={value[1]} isDark={isDark || false} />
-				</ClockContainer>
-			))}
-		</BlockContainer>
-	)
-}
-
-interface LettersClockProps extends Partial<BaseClockProps>{
-	value: string
-}
-
-export const LetterClock = ({
-	value, columns, rows, isDark, borderColor, darkBorderColor, lineColor, darkLineColor,
-}: LettersClockProps) => {
-	const data = SwitchLetters(value)
-	return (
-		<BlockContainer columns={columns} rows={rows}>
-			{data.map((value, index,) => (
-				<ClockContainer
-					key={'clock-letter-container-' + index}
-					borderColor={borderColor}
-					darkBorderColor={darkBorderColor}
-					isDark={isDark || false}
-				>
-					<ClockLine color={lineColor} darkColor={darkLineColor} rotate={value[0]} isDark={isDark || false} />
-					<ClockLine color={lineColor} darkColor={darkLineColor} rotate={value[1]} isDark={isDark || false} />
-				</ClockContainer>
-			))}
-		</BlockContainer>
-	)
-}
-
-export const LettersClock = (props: LettersClockProps) => {
-	const data = props.value.split('')
-	return (
-		<>
-			{data.map((value: string, index: number) => (
-				<div key={'numbers-clock-' + index}>
-					<LetterClock
-						{...props}
-						value={value}
+					<ClockLine
+						height={size! / 2}
+						color={lineColor}
+						darkColor={darkLineColor}
+						rotate={value[0]}
+						isDark={isDark || false}
 					/>
-				</div>
+					<ClockLine
+						height={size! / 2}
+						color={lineColor}
+						darkColor={darkLineColor}
+						rotate={value[1]}
+						isDark={isDark || false}
+					/>
+				</ClockContainer>
 			))}
-		</>
+		</BlockContainer>
 	)
 }

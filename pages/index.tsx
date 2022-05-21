@@ -4,54 +4,44 @@ import Head from 'next/head'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 import {
-	LetterClock,
-	LettersClock,
-	NumberClock,
 	NumbersClock,
 	SymbolClock,
 } from '../components/ClockShow'
 
 import type { NextPage } from 'next'
 
-type ClockType = [string, string]
-
-interface IClock{
-	hour: ClockType
-	minute: ClockType
-	second: ClockType
-}
-
 const Home: NextPage = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
 
-	const [clock, setClock] = useState<IClock>()
+	const [hours, setHours] = useState<string>('00')
+	const [minutes, setMinutes] = useState<string>('00')
+	const [seconds, setSeconds] = useState<string>('00')
 
 	const toggleColorModeIcon = colorMode === 'dark' ? <SunIcon /> : <MoonIcon />
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			const date = new Date()
-			let hour = date.getHours().toString().split('')
-			let minute = date.getMinutes().toString().split('')
-			let second = date.getSeconds().toString().split('')
-
-			if (hour.length === 1) {
-				hour = ['0', hour[0]]
+			let hoursNew = date.getHours().toString()
+			let minutesNew = date.getMinutes().toString()
+			let secondsNew = date.getSeconds().toString()
+			if (hoursNew.length === 1) {
+				hoursNew = '0' + hoursNew
 			}
-			if (minute.length === 1) {
-				minute = ['0', minute[0]]
+			if (minutesNew.length === 1) {
+				minutesNew = '0' + minutesNew
 			}
-			if (second.length === 1) {
-				second = ['0', second[0]]
+			if (secondsNew.length === 1) {
+				secondsNew = '0' + secondsNew
 			}
-			setClock({
-				hour: [hour[0], hour[1]],
-				minute: [minute[0], minute[1]],
-				second: [second[0], second[1]],
-			})
+			setHours(hoursNew)
+			setMinutes(minutesNew)
+			setSeconds(secondsNew)
 		}, 1000)
 		return () => clearInterval(interval)
 	}, [])
+
+	const baseSize = 13
 
 	return (
 		<>
@@ -63,36 +53,11 @@ const Home: NextPage = () => {
 					<IconButton onClick={toggleColorMode} aria-label={'toggle color mode'} icon={toggleColorModeIcon} />
 				</Center>
 				<Center>
-					<NumbersClock value={'088'} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<LettersClock value={'AAAA'} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<NumberClock value={0} isDark={colorMode === 'dark'} />
-					<NumberClock value={1} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<NumberClock value={2} isDark={colorMode === 'dark'} />
-					<NumberClock value={3} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<NumberClock value={4} isDark={colorMode === 'dark'} />
-					<NumberClock value={5} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<NumberClock value={6} isDark={colorMode === 'dark'} />
-					<NumberClock value={7} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<NumberClock value={8} isDark={colorMode === 'dark'} />
-					<NumberClock value={9} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<SymbolClock value={','} isDark={colorMode === 'dark'} />
-				</Center>
-				<Center>
-					<LetterClock value={'A'} isDark={colorMode === 'dark'} />
+					<NumbersClock value={hours} isDark={colorMode === 'dark'} size={baseSize} />
+					<SymbolClock value={':'} isDark={colorMode === 'dark'} size={baseSize} />
+					<NumbersClock value={minutes} isDark={colorMode === 'dark'} size={baseSize} />
+					<SymbolClock value={':'} isDark={colorMode === 'dark'} size={baseSize} />
+					<NumbersClock value={seconds} isDark={colorMode === 'dark'} size={baseSize} />
 				</Center>
 			</Box>
 		</>
