@@ -54,7 +54,7 @@ const Home: NextPage = () => {
 	const inputActiveBg = useColorModeValue('gray.50', 'blackAlpha.500')
 	
 	const handleSearchButtonClock = () => {
-	  
+		console.log('click')
 	}
 
 	return (
