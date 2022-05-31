@@ -17,7 +17,7 @@ import ColorModeToggle from './ColorModeToggle'
 const SettingDrawer = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const drawerBg = useColorModeValue('whiteAlpha.900', 'blackAlpha.900')
-	
+
 	return (
 		<>
 			<IconButton
@@ -28,7 +28,7 @@ const SettingDrawer = () => {
 				icon={<SettingsIcon />}
 				onClick={onOpen}
 			/>
-			<Drawer isOpen={isOpen} onClose={onClose}>
+			<Drawer isOpen={isOpen} onClose={onClose} size="sm">
 				<DrawerOverlay />
 				<DrawerContent bg={drawerBg}>
 					<DrawerHeader>
