@@ -1,31 +1,31 @@
 import { useEffect, useRef, useState } from 'react'
 import {
 	Box,
+	Image,
+	Input,
 	Center,
 	HStack,
+	Popover,
 	IconButton,
-	Image,
-	Input, Popover, PopoverArrow, PopoverBody, PopoverContent,
+	PopoverBody,
+	PopoverContent,
+	useColorModeValue,
 	PopoverTrigger,
-	useColorMode, useColorModeValue, useDisclosure
+	useDisclosure,
+	useColorMode,
 } from '@chakra-ui/react'
 import Head from 'next/head'
-import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
+import { SearchIcon } from '@chakra-ui/icons'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-import {
-	NumbersClock,
-	SymbolClock,
-} from '../components/ClockShow'
+import { NumbersClock, SymbolClock } from '../components/ClockShow'
+import SettingDrawer from '../components/SettingDrawer'
 
 import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
-	const { colorMode, toggleColorMode } = useColorMode()
 	const [searchContent, setSearchContent] = useState<string>('')
-
 	const [searchEngine, setSearchEngine] = useState<'google' | 'bing' | 'baidu'>('bing')
-
 	const iconSrc = '/' + searchEngine + '.png'
 
 	const searchLink = () => {
@@ -37,14 +37,13 @@ const Home: NextPage = () => {
 	}
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { colorMode } = useColorMode()
 
 	const initFocusRef = useRef<HTMLButtonElement>(null)
 
 	const [hours, setHours] = useState<string>('00')
 	const [minutes, setMinutes] = useState<string>('00')
 	const [seconds, setSeconds] = useState<string>('00')
-
-	const toggleColorModeIcon = colorMode === 'dark' ? <SunIcon /> : <MoonIcon />
 
 	useHotkeys('enter', (keyboardEvent) => {
 		keyboardEvent.preventDefault()
@@ -77,35 +76,42 @@ const Home: NextPage = () => {
 
 	const baseSize = 30
 
-	const inputActiveBg = useColorModeValue('gray.50', 'blackAlpha.500')
+	const inputActiveBg = useColorModeValue('whiteAlpha.600', 'blackAlpha.600')
+	const inputBg = useColorModeValue('whiteAlpha.400', 'blackAlpha.400')
 
 	const handleSearchButtonClock = () => {
 		window.open(searchLink(), '_blank')
 	}
+
+	const bgImg = useColorModeValue(
+		'linear-gradient(to right, #dad4ec 0%, white 100%)',
+		'linear-gradient(to right, #434343 0%, black 100%)',
+	)
 
 	return (
 		<>
 			<Head>
 				<title>Start Page</title>
 			</Head>
-			<Box padding={3}>
-				<Center>
-					<IconButton onClick={toggleColorMode} aria-label={'toggle color mode'} icon={toggleColorModeIcon} />
-				</Center>
-				<Center m={3}>
+			<Box
+				padding={3}
+				h="100vh"
+				backgroundImage={bgImg}
+			>
+				<Center m={3} minH="30vh">
 					<NumbersClock value={hours} isDark={colorMode === 'dark'} size={baseSize} />
 					<SymbolClock value={':'} isDark={colorMode === 'dark'} size={baseSize} />
 					<NumbersClock value={minutes} isDark={colorMode === 'dark'} size={baseSize} />
 					<SymbolClock value={':'} isDark={colorMode === 'dark'} size={baseSize} />
 					<NumbersClock value={seconds} isDark={colorMode === 'dark'} size={baseSize} />
 				</Center>
-				<Center minHeight="30vh">
+				<Center minHeight="20vh">
 					<HStack
 						spacing={0}
 						borderWidth={1}
 						rounded="lg"
 						padding={1}
-						backgroundColor={'transparent'}
+						backgroundColor={inputBg}
 						_focusWithin={{
 							backgroundColor: inputActiveBg
 						}}
@@ -179,6 +185,7 @@ const Home: NextPage = () => {
 					</HStack>
 				</Center>
 			</Box>
+			<SettingDrawer />
 		</>
 	)
 }
