@@ -28,7 +28,7 @@ const SettingDrawer = () => {
 				icon={<SettingsIcon />}
 				onClick={onOpen}
 			/>
-			<Drawer isOpen={isOpen} onClose={onClose} size="sm">
+			<Drawer isOpen={isOpen} onClose={onClose} size="md">
 				<DrawerOverlay />
 				<DrawerContent bg={drawerBg}>
 					<DrawerHeader>
