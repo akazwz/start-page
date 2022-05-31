@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
 	Box,
 	Center,
 	HStack,
 	IconButton,
 	Image,
-	Input,
-	useColorMode, useColorModeValue
+	Input, Popover, PopoverArrow, PopoverBody, PopoverContent,
+	PopoverTrigger,
+	useColorMode, useColorModeValue, useDisclosure
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import {
 	NumbersClock,
@@ -20,12 +22,36 @@ import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
+	const [searchContent, setSearchContent] = useState<string>('')
+
+	const [searchEngine, setSearchEngine] = useState<'google' | 'bing' | 'baidu'>('bing')
+
+	const iconSrc = '/' + searchEngine + '.png'
+
+	const searchLink = () => {
+		let searchQuery = 'search?q='
+		if (searchEngine === 'baidu') {
+			searchQuery = 's?wd='
+		}
+		return `https://${searchEngine}.com/${searchQuery}${searchContent}`
+	}
+
+	const { isOpen, onOpen, onClose } = useDisclosure()
+
+	const initFocusRef = useRef<HTMLButtonElement>(null)
 
 	const [hours, setHours] = useState<string>('00')
 	const [minutes, setMinutes] = useState<string>('00')
 	const [seconds, setSeconds] = useState<string>('00')
 
 	const toggleColorModeIcon = colorMode === 'dark' ? <SunIcon /> : <MoonIcon />
+
+	useHotkeys('enter', (keyboardEvent) => {
+		keyboardEvent.preventDefault()
+		handleSearchButtonClock()
+	}, {
+		enableOnTags: ['INPUT']
+	})
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -52,9 +78,9 @@ const Home: NextPage = () => {
 	const baseSize = 30
 
 	const inputActiveBg = useColorModeValue('gray.50', 'blackAlpha.500')
-	
+
 	const handleSearchButtonClock = () => {
-		console.log('click')
+		window.open(searchLink(), '_blank')
 	}
 
 	return (
@@ -88,10 +114,51 @@ const Home: NextPage = () => {
 						}}
 						width={'lg'}
 					>
-						<IconButton
-							icon={<Image src={'/google.png'} draggable={false} alt="" />}
-							aria-label={'search regine'} variant="ghost"
-						/>
+						<Popover
+							initialFocusRef={initFocusRef}
+							isOpen={isOpen}
+							onClose={onClose}
+						>
+							<PopoverTrigger>
+								<IconButton
+									icon={<Image src={iconSrc} draggable={false} alt="" />}
+									aria-label={'search regine'} variant="ghost"
+									onClick={onOpen}
+								/>
+							</PopoverTrigger>
+
+							<PopoverContent bgColor="transparent" width="200px">
+								<PopoverBody width="200px">
+									<HStack spacing={7} mx="auto" justifyContent="center">
+										<IconButton
+											ref={initFocusRef}
+											icon={<Image src={'/google.png'} draggable={false} alt="" />}
+											aria-label={'search regine'} variant="ghost"
+											onClick={() => {
+												setSearchEngine('google')
+												onClose()
+											}}
+										/>
+										<IconButton
+											icon={<Image src={'/bing.png'} draggable={false} alt="" />}
+											aria-label={'search regine'} variant="ghost"
+											onClick={() => {
+												setSearchEngine('bing')
+												onClose()
+											}}
+										/>
+										<IconButton
+											icon={<Image src={'/baidu.png'} draggable={false} alt="" />}
+											aria-label={'search regine'} variant="ghost"
+											onClick={() => {
+												setSearchEngine('baidu')
+												onClose()
+											}}
+										/>
+									</HStack>
+								</PopoverBody>
+							</PopoverContent>
+						</Popover>
 						<Input
 							outline={0}
 							backgroundColor={'transparent'}
@@ -100,11 +167,14 @@ const Home: NextPage = () => {
 							}}
 							rounded="lg"
 							border={'none'}
+							value={searchContent}
+							onInput={(e) => setSearchContent(e.currentTarget.value)}
 						/>
 						<IconButton
 							aria-label={'search'}
-							icon={<SearchIcon fontSize="xl"/>}
+							icon={<SearchIcon fontSize="xl" />}
 							variant="ghost"
+							onClick={handleSearchButtonClock}
 						/>
 					</HStack>
 				</Center>
