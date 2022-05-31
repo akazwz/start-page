@@ -23,9 +23,11 @@ import SettingDrawer from '../components/SettingDrawer'
 
 import type { NextPage } from 'next'
 
+export type SearchEngine = 'google' | 'bing' | 'baidu'
+
 const Home: NextPage = () => {
 	const [searchContent, setSearchContent] = useState<string>('')
-	const [searchEngine, setSearchEngine] = useState<'google' | 'bing' | 'baidu'>('bing')
+	const [searchEngine, setSearchEngine] = useState<SearchEngine>('bing')
 	const iconSrc = '/' + searchEngine + '.png'
 
 	const searchLink = () => {
@@ -35,6 +37,12 @@ const Home: NextPage = () => {
 		}
 		return `https://${searchEngine}.com/${searchQuery}${searchContent}`
 	}
+
+	useEffect(() => {
+		const defaultSearchEngine = localStorage.getItem('default-search-engine')
+		if (!defaultSearchEngine) return
+		setSearchEngine(defaultSearchEngine as SearchEngine)
+	}, [])
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { colorMode } = useColorMode()

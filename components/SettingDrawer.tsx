@@ -8,11 +8,12 @@ import {
 	DrawerCloseButton,
 	useColorModeValue,
 	useDisclosure,
-	Drawer,
+	Drawer, VStack,
 } from '@chakra-ui/react'
 import { SettingsIcon } from '@chakra-ui/icons'
 
 import ColorModeToggle from './ColorModeToggle'
+import SearchEngineSelector from './SearchEngineSelector'
 
 const SettingDrawer = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -35,9 +36,10 @@ const SettingDrawer = () => {
 						<DrawerCloseButton />
 					</DrawerHeader>
 					<DrawerBody>
-						<Center>
+						<VStack spacing={7}>
 							<ColorModeToggle />
-						</Center>
+							<SearchEngineSelector />
+						</VStack>
 					</DrawerBody>
 				</DrawerContent>
 			</Drawer>
