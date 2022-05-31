@@ -44,8 +44,10 @@ const Home: NextPage = () => {
 	const [hours, setHours] = useState<string>('00')
 	const [minutes, setMinutes] = useState<string>('00')
 	const [seconds, setSeconds] = useState<string>('00')
+	const [isInputFocus, setIsInputFocus] = useState(false)
 
 	useHotkeys('enter', (keyboardEvent) => {
+		if (!isInputFocus) return
 		keyboardEvent.preventDefault()
 		handleSearchButtonClock()
 	}, {
@@ -174,6 +176,8 @@ const Home: NextPage = () => {
 							rounded="lg"
 							border={'none'}
 							value={searchContent}
+							onFocus={() => setIsInputFocus(true)}
+							onBlur={() => setIsInputFocus(false)}
 							onInput={(e) => setSearchContent(e.currentTarget.value)}
 						/>
 						<IconButton
