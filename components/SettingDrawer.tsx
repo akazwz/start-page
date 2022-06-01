@@ -1,5 +1,6 @@
 import {
-	Center,
+	Text,
+	VStack,
 	DrawerBody,
 	IconButton,
 	DrawerHeader,
@@ -8,7 +9,7 @@ import {
 	DrawerCloseButton,
 	useColorModeValue,
 	useDisclosure,
-	Drawer, VStack,
+	Drawer,
 } from '@chakra-ui/react'
 import { SettingsIcon } from '@chakra-ui/icons'
 
@@ -38,6 +39,9 @@ const SettingDrawer = () => {
 					<DrawerBody>
 						<VStack spacing={7}>
 							<ColorModeToggle />
+							<Text>
+								Default Engine
+							</Text>
 							<SearchEngineSelector />
 						</VStack>
 					</DrawerBody>
