@@ -2,6 +2,8 @@
 
 Simple browser start page build with nextjs and chakra-ui
 
+![home](./docs/home.png)
+
 # Screenshots
 
 1. dark mode
