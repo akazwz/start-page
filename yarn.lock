@@ -927,10 +927,10 @@
   resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
   integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
 
-"@types/node@17.0.35":
-  version "17.0.35"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-17.0.35.tgz#635b7586086d51fb40de0a2ec9d1014a5283ba4a"
-  integrity sha512-vu1SrqBjbbZ3J6vwY17jBs8Sr/BKA+/a/WtjRG+whKg1iuLFOosq872EXS0eXWILdO36DHQQeku/ZcL6hz2fpg==
+"@types/node@17.0.38":
+  version "17.0.38"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-17.0.38.tgz#f8bb07c371ccb1903f3752872c89f44006132947"
+  integrity sha512-5jY9RhV7c0Z4Jy09G+NIDTsCZ5G0L5n+Z+p+Y7t5VJHM30bgwzSjVtlcBxqAj+6L/swIlvtOSzr8rBk/aNyV2g==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -949,10 +949,19 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@18.0.9", "@types/react@^18.0.1":
+"@types/react@*", "@types/react@^18.0.1":
   version "18.0.9"
   resolved "https://registry.npmmirror.com/@types/react/-/react-18.0.9.tgz#d6712a38bd6cd83469603e7359511126f122e878"
   integrity sha512-9bjbg1hJHUm4De19L1cHiW0Jvx3geel6Qczhjd0qY5VKVE2X5+x77YxAepuCwVh4vrgZJdgEJw48zrhRIeF4Nw==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@18.0.10":
+  version "18.0.10"
+  resolved "https://registry.npmmirror.com/@types/react/-/react-18.0.10.tgz#5692944d4a45e204fb7a981eb1388afe919cf4d0"
+  integrity sha512-dIugadZuIPrRzvIEevIu7A1smqOAjkSMv8qOfwPt9Ve6i6JT/FQcCHyk2qIAxwsQNKZt5/oGR0T4z9h2dXRAkg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -1680,10 +1689,10 @@ focus-lock@^0.11.2:
   dependencies:
     tslib "^2.0.3"
 
-framer-motion@^6.3.4:
-  version "6.3.4"
-  resolved "https://registry.npmmirror.com/framer-motion/-/framer-motion-6.3.4.tgz#b8035f60c6d7863162310ddee32eb386212a3ce7"
-  integrity sha512-FXHqpY23g0MhznXpAf94SyEmUqfw7KoLaCQqTKrjWZgQzMkjvfOgOVYKUA9Dlmys6XGn0qN+AMzjhFJ1N5bH+A==
+framer-motion@^6.3.6:
+  version "6.3.6"
+  resolved "https://registry.npmmirror.com/framer-motion/-/framer-motion-6.3.6.tgz#9ca52544a7d0c74668f880eb2cab4a5de6dc71a0"
+  integrity sha512-gaCmjkg8J72EBiSQAxjY0elzxVQL3GMPA4jQGIvrMa+kiVDyLG0WXQTwAQnJpsylIa/ySDz3djQt2YyD8AKZ7Q==
   dependencies:
     framesync "6.0.1"
     hey-listen "^1.0.8"
