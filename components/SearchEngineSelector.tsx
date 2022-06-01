@@ -1,6 +1,6 @@
+import { useEffect } from 'react'
 import { useRadioGroup } from '@chakra-ui/radio'
 import { HStack } from '@chakra-ui/react'
-import { useEffect } from 'react'
 
 import RadioCard from './RadioCard'
 

@@ -1,9 +1,17 @@
-1. ffff
-2. ffggdfgfdgd
-3. dfgdfgdf
+# Start Page
 
-````javascript
-console.log('shuo')
+Simple browser start page build with nextjs and chakra-ui
 
-fgdfgd
-````
+# Screenshots
+
+1. dark mode
+   ![dark](./docs/dark.png)
+
+2. search engine selector
+   ![search engine](./docs/search_engine.png)
+
+4. light mode
+   ![light](./docs/light.png)
+
+5. setting
+   ![setting](./docs/setting.png)
