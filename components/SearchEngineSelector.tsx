@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useRadioGroup } from '@chakra-ui/radio'
-import { HStack } from '@chakra-ui/react'
+import { HStack, Image } from '@chakra-ui/react'
 
 import RadioCard from './RadioCard'
 
 const SearchEngineSelector = () => {
-	const options = ['Google', 'Bing', 'Baidu']
+	const options = ['Google', 'Bing', 'Baidu', 'Github', 'StackOverflow']
 
 	const { getRootProps, getRadioProps, setValue } = useRadioGroup({
 		name: 'search engine',
@@ -30,7 +30,7 @@ const SearchEngineSelector = () => {
 					const radio = getRadioProps({ value })
 					return (
 						<RadioCard key={value} {...radio}>
-							{value}
+							<Image src={`/${value.toLowerCase()}.png`} alt={'search engine'}/>
 						</RadioCard>
 					)
 				})

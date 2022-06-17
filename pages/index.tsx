@@ -23,7 +23,7 @@ import SettingDrawer from '../components/SettingDrawer'
 
 import type { NextPage } from 'next'
 
-export type SearchEngine = 'google' | 'bing' | 'baidu'
+export type SearchEngine = 'google' | 'bing' | 'baidu' | 'github' | 'stackoverflow'
 
 const Home: NextPage = () => {
 	const [searchContent, setSearchContent] = useState<string>('')
@@ -142,9 +142,8 @@ const Home: NextPage = () => {
 									onClick={onOpen}
 								/>
 							</PopoverTrigger>
-
-							<PopoverContent bgColor="transparent" width="200px">
-								<PopoverBody width="200px">
+							<PopoverContent bgColor="transparent">
+								<PopoverBody>
 									<HStack spacing={7} mx="auto" justifyContent="center">
 										<IconButton
 											ref={initFocusRef}
@@ -168,6 +167,24 @@ const Home: NextPage = () => {
 											aria-label={'search regine'} variant="ghost"
 											onClick={() => {
 												setSearchEngine('baidu')
+												onClose()
+											}}
+										/>
+										<IconButton
+											ref={initFocusRef}
+											icon={<Image src={'/github.png'} draggable={false} alt="" />}
+											aria-label={'search regine'} variant="ghost"
+											onClick={() => {
+												setSearchEngine('github')
+												onClose()
+											}}
+										/>
+										<IconButton
+											ref={initFocusRef}
+											icon={<Image src={'/stackoverflow.png'} draggable={false} alt="" />}
+											aria-label={'search regine'} variant="ghost"
+											onClick={() => {
+												setSearchEngine('stackoverflow')
 												onClose()
 											}}
 										/>
